@@ -9,11 +9,15 @@ namespace CL\Trello;
 use CL\Site\Site;
 use CL\Site\View;
 
+/**
+ * Auxiliary view class for presenting trello-sprinter content.
+ */
 class TrelloSprinterView extends \CL\Site\ViewAux {
 
 	/** Constructor
 	 * @param Site $site The Site object
-	 * @param string $teamingTag Optional teaming tag */
+	 * @param string $team Optional team name
+	 */
 	public function __construct(Site $site, $team = null) {
 		$this->site = $site;
 		$this->user = $site->users->user;
