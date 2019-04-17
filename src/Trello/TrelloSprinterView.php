@@ -11,6 +11,11 @@ use CL\Site\View;
 
 /**
  * Auxiliary view class for presenting trello-sprinter content.
+ *
+ * @cond
+ * @property string key Trello API key
+ * @property string after Only consider data after this date
+ * @endcond
  */
 class TrelloSprinterView extends \CL\Site\ViewAux {
 
@@ -52,6 +57,10 @@ class TrelloSprinterView extends \CL\Site\ViewAux {
 				$this->key = $value;
 				break;
 
+            case 'after':
+                $this->after = strtotime($value);
+                break;
+
 			default:
 				parent::__set($property, $value);
 				break;
@@ -66,7 +75,8 @@ class TrelloSprinterView extends \CL\Site\ViewAux {
 		$data = [
 			'key'=>$this->key,
 			'team'=>$this->team,
-			'views'=>$this->views
+			'views'=>$this->views,
+            'after'=>$this->after
 		];
 
 		$json = htmlspecialchars(json_encode($data), ENT_NOQUOTES);
@@ -96,4 +106,5 @@ HTML;
 	private $team;
 	private $key;
 	private $views;
+	private $after = null;
 }

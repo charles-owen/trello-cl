@@ -5,10 +5,11 @@ export const TrelloSprinterView = function(site, element) {
 	element.innerText = '';
 	element.style.display = 'block';
 
-	let trello = new TrelloSprinter({
+	new TrelloSprinter({
 		sel: element,
 		key: json.key,
 		board: json.team,
-		views: json.views
+		views: json.views,
+		after: json.after
 	});
 }
