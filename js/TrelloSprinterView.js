@@ -5,11 +5,17 @@ export const TrelloSprinterView = function(site, element) {
 	element.innerText = '';
 	element.style.display = 'block';
 
-	new TrelloSprinter({
+	var options = {
 		sel: element,
 		key: json.key,
 		board: json.team,
 		views: json.views,
 		after: json.after
-	});
+	};
+
+	if(json.cards !== undefined) {
+		options.cards = json.cards;
+	}
+
+	new TrelloSprinter(options);
 }

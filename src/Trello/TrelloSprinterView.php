@@ -15,6 +15,7 @@ use CL\Site\View;
  * @cond
  * @property string key Trello API key
  * @property string after Only consider data after this date
+ * @property array cards List of required cards in order
  * @endcond
  */
 class TrelloSprinterView extends \CL\Site\ViewAux {
@@ -47,7 +48,10 @@ class TrelloSprinterView extends \CL\Site\ViewAux {
 	 * <b>Properties</b>
 	 * Property | Type | Description
 	 * -------- | ---- | -----------
-	 *
+	 * key | string | The Trello API key
+     * after | string | Only receive Trello after a this date/time
+     * cards | array | Optional order for cards
+     *
 	 * @param string $property Property name
 	 * @param mixed $value Value to set
 	 */
@@ -59,6 +63,10 @@ class TrelloSprinterView extends \CL\Site\ViewAux {
 
             case 'after':
                 $this->after = strtotime($value);
+                break;
+
+            case 'cards':
+                $this->cards = $value;
                 break;
 
 			default:
@@ -78,6 +86,10 @@ class TrelloSprinterView extends \CL\Site\ViewAux {
 			'views'=>$this->views,
             'after'=>$this->after
 		];
+
+		if($this->cards !== null) {
+		    $data['cards'] = $this->cards;
+        }
 
 		$json = htmlspecialchars(json_encode($data), ENT_NOQUOTES);
 		return <<<HTML
@@ -107,4 +119,5 @@ HTML;
 	private $key;
 	private $views;
 	private $after = null;
+	private $cards = null;
 }
