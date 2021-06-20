@@ -15,12 +15,17 @@
     }
   },
   "require" : {
-    "cl/course": "^2.2"
+    "cl/course": "^2.3.1"
   },
   "repositories": [
     {
       "type": "vcs",
       "url": "https://github.com/charles-owen/trello-cl.git"
     }
-  ]
+  ],
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.3.x-dev"
+    }
+  }
 }
